@@ -22,13 +22,15 @@ class ControlBox extends React.Component {
   }
 
   handleButton() {
-    for (let i = 0; i < colorArr.length; i++) {
-      if (i < 3) {
-        this.setState({ index: colorArr[i] });
-      } else {
-        this.setState({ index: 0 });
-      }
-    }
+    let i = this.state.index < colorArr.length - 1 ? (this.state.index += 1) : 0;
+    this.setState({ index: i });    
+    // for (let i = 0; i < colorArr.length; i++) {
+    //   if (i < 3) {
+    //     this.setState({ index: i });
+    //   } else {
+    //     this.setState({ index: 2 });
+    //   }
+    // }
   }
 
   render() {
@@ -41,7 +43,7 @@ class ControlBox extends React.Component {
         ]}
       >
         <View style={styles.btnContainer}>
-          <Text style={styles.btnText}> </Text>
+          <Text style={styles.btnText}>{this.props.title} </Text>
         </View>
       </TouchableHighlight>
     );
@@ -51,8 +53,7 @@ class ControlBox extends React.Component {
 export default class App extends React.Component {
 
   render() {
-    return (
-      <Grid>
+    return <Grid>
         <Row>
           <ControlBox title="Box-1" />
           <ControlBox title="Box-2" />
@@ -65,8 +66,7 @@ export default class App extends React.Component {
           <ControlBox title="Box-5" />
           <ControlBox title="Box-6" />
         </Row>
-      </Grid>
-    );
+      </Grid>;
   }
 }
 
